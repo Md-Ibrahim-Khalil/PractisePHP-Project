@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Home</title>
+    </head>
+    <body>
+        <form action="" method="" id="registrationForm">
+            <table>
+                <tr>
+                    <th>First Name</th>
+                    <td><input type=text" name="first_name" id="firstname">
+                    <span id="firstNameError" style="color: red;"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Last Name</th>
+                    <td><input type="text" name="last_name" id="lastname">
+                        <span id="lastNameError" style="color: red;"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Email Address</th>
+                    <td><input type="email" name="email_address" id="emailAddress">
+                        <span id="emailAddressError" style="color: red;"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Password</th>
+                    <td><input type="password" name="password" id="password">
+                        <span id="passwordError"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Confirm Password</th>
+                    <td><input type="password" name="confirm_password" id="confirmPassword">
+                        <span id="confirmPasswordError"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>District Name</th>
+                    <td>
+                        <select name="district_name" id="districtName">
+                            <option value="">Select District Name</option>
+                            <option value="Dhaka">Dhaka</option>
+                            <option value="Khulna">Khulna</option>
+                            <option value="Tangail">Tangail</option>
+                            <option value="Gazipur">Gazipur</option>
+                        </select>
+                        <span id="districtNameError"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td><input type="submit" name="btn" id="btn" value="Submit"></td>
+                </tr>
+            </table>
+        </form>
+
+    <script src="jquery-3.5.1.js"></script>
+    <script src="script.js"></script>
+    </body>
+</html>
