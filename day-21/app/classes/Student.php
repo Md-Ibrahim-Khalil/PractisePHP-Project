@@ -43,11 +43,29 @@ class Student
         $sql = "SELECT * FROM students WhERE id = '$id' ";
         if (mysqli_query(Student::dbConnection(), $sql)) {
             $queryResult = mysqli_query(Student::dbConnection(), $sql);
-            echo '<pre>';
-            print_r($queryResult);
+            return $queryResult;
 
         } else {
             die('Query problem'.mysqli_error(Student::dbConnection()));
         }
+    }
+    public function updateStudentInfo($data) {
+        $sql = "UPDATE students SET name='$data[name]', email='$data[email]', mobile='$data[mobile]' WHERE id='$data[id]' ";
+        if (mysqli_query(Student::dbConnection(), $sql)) {
+            header('Location: view-student.php');
+
+        } else {
+            die('Query problem'.mysqli_error(Student::dbConnection()));
+        }
+    }
+    public function deleteStudentInfo($id) {
+        $sql = "DELETE FROM students WHERE id = '$id' ";
+        if (mysqli_query(Student::dbConnection(), $sql)) {
+            $message = "Student info delete successfully";
+            return $message;
+
+        } else {
+            die('Query problem'.mysqli_error(Student::dbConnection()));
+        } 
     }
 }

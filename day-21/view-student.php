@@ -5,13 +5,20 @@ use App\classes\Student;
 
 $message = '';
 
+if (isset($_GET['delete'])) {
+    $id = $_GET['id'];
+    $message = Student::deleteStudentInfo($id);
+}
+
+
+
 $queryResult = Student::getAllStudentInfo();
 
 
 ?>
 
 <hr/>
-<a href="add-student.php">Add Student</a>
+<a href="add-student.php">Add Student</a> ||
 <a href="view-student.php">View Student</a>
 <h1 style="color:green;"><?php  echo $message; ?></h1>
 <hr/>
@@ -31,7 +38,7 @@ $queryResult = Student::getAllStudentInfo();
         <td><?php echo $student['mobile']; ?></td>
         <td>
             <a href="edit-student.php?id=<?php echo $student['id']; ?>">Edit</a>    
-            <a href="">Delete</a>
+            <a href="?delete=true&id=<?php echo $student['id']; ?>" onclick="return confirm('Are you sure to delete this !!');">Delete</a>
         </td>
     </tr>
     <?php  } ?>
