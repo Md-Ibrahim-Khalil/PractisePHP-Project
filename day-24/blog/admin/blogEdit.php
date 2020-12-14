@@ -9,16 +9,23 @@ require_once '../vendor/autoload.php';
 $login = new App\classes\Login();
 $blog = new App\classes\Blog();
 
+use App\classes\Blog;
 
-$queryResult = $blog->getAllPublishedCategoryInfo();
 
 if (isset($_GET['logout'])) {
     $login->adminLogout();
 }
 
-if (isset($_POST['btn'])) {
-    $message = $blog->addBlog($_POST);
-}
+$id = $_GET['id'];
+
+$queryResult = $blog->getBlogInfo($id);
+
+$data = mysqli_fetch_assoc($queryResult);
+
+//if(isset($_POST['btn'])){
+//    $blog->editBlogInfo($_POST);
+//}
+
 
 ?>
 
@@ -40,34 +47,33 @@ if (isset($_POST['btn'])) {
                 <div class="card">
                     <h4 class="text-success"><?php echo $message; ?></h4>
                     <div class="card-body">
-                        <form action="" method="POST" enctype="multipart/form-data">
+                        <form action="" method="POST">
                             <div class="form-group row">
                                 <label for="inputEmail3" class="col-sm-3 col-form-label">Category Name</label>
                                 <div class="col-sm-9">
-                                    <select name="category_id" class="form-control">
+                                    <select name="category_name" class="form-control">
                                         <option>---Select Category Name---</option>
-                                        <?php while ($category = mysqli_fetch_assoc($queryResult)) { ?>
-                                            <option value="<?php echo $category['id'] ?>"><?php echo $category['category_name'] ?></option>
-                                        <?php } ?>
+                                        <option value="1" <?php if ($data['category_name'] == '1') echo "selected"; ?>>Category One</option>
+                                        <option value="2" <?php if ($data['category_name'] == '2') echo "selected"; ?>>Category Two</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="inputPassword3" class="col-sm-3 col-form-label">Blog Title</label>
                                 <div class="col-sm-9">
-                                    <input type="text" name="blog_title" class="form-control" />
+                                    <input type="text" name="blog_title" class="form-control" value="<?php echo $data['blog_title'] ?>" />
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="inputPassword3" class="col-sm-3 col-form-label">Short Description</label>
                                 <div class="col-sm-9">
-                                    <textarea class="form-control" name="short_description"></textarea>
+                                    <textarea class="form-control" name="short_description"><?php echo $data['short_description'] ?></textarea>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="inputPassword3" class="col-sm-3 col-form-label">Long Description</label>
                                 <div class="col-sm-9">
-                                    <textarea class="form-control" name="long_description"></textarea>
+                                    <textarea class="form-control" name="long_description"><?php echo $data['long_description'] ?></textarea>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -79,8 +85,8 @@ if (isset($_POST['btn'])) {
                             <div class="form-group row">
                                 <label for="inputEmail3" class="col-sm-3 col-form-label">Publication Status</label>
                                 <div class="col-sm-9">
-                                    <input type="radio" name="status" value="1"> Published
-                                    <input type="radio" name="status" value="0"> Unpublished
+                                    <input type="radio" name="status" value="1" <?php if ($data['status'] == '1') echo "checked"; ?>> Published
+                                    <input type="radio" name="status" value="0" <?php if ($data['status'] == '0') echo "checked"; ?>> Unpublished
                                 </div>
                             </div>
                             <div class="form-group row">
