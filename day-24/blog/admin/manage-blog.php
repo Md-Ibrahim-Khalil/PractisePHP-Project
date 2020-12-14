@@ -56,7 +56,7 @@ $queryResult = $blog->viewBlogInfo();
                                 <?php while ($data = mysqli_fetch_assoc($queryResult)) { ?>
                                     <tr>
                                         <th scope="row"><?php echo $data['id'] ?></th>
-                                        <td><?php echo $data['category_name'] ?></td>
+                                        <td><?php echo $data['category_id'] ?></td>
                                         <td><?php echo $data['blog_title'] ?></td>
                                         <td><?php echo $data['short_description'] ?></td>
                                         <td><?php echo $data['long_description'] ?></td>
